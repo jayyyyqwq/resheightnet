@@ -65,6 +65,18 @@ budget. `train_full` (the real M7 run whose output is what gets
 evaluated in `docs/comparison_table.md`) is unaffected and still uses
 `lr=1e-4` to match DepthWizard exactly.
 
+**Update after running on real data (Colab T4, real `stage_a1_val`
+tiles):** at `lr=3e-3`/300 steps, the gate reached `final/L0=0.084`
+(well under the 0.25 ratio threshold) but `final=0.4474m` (just above
+the 0.30m absolute threshold) — a smooth, monotonically-decreasing
+curve with no plateau, NaN, or instability at step 299. Real GAMUS
+tiles carry more per-pixel texture/detail than the synthetic fixture
+this default was tuned on, so 300 steps was a genuine step-budget
+shortfall, not a wiring bug — the ratio criterion (which is
+self-calibrating against that same tile set's L0) already confirmed
+correct wiring. The notebook default is now `--steps 800`, which a T4
+runs in a few extra minutes.
+
 ## GAMUS class-band dtype is inconsistent upstream
 
 The `classes/*_CLS.h5` semantic label band is stored as `float32` for
