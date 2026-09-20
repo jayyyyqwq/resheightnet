@@ -70,7 +70,7 @@ build) and just `pip install -r requirements.txt` for the rest.
 # development/testing:
 .venv\Scripts\python.exe scripts\fetch_gamus.py --split data\splits\stage_a1_val.txt --limit 20
 
-# M6 overfit gate -- fast, falsifiable wiring check before spending any
+# Overfit gate -- fast, falsifiable wiring check before spending any
 # Colab GPU time:
 .venv\Scripts\python.exe -m src.train --overfit 10 --steps 300
 
@@ -118,10 +118,10 @@ GAMUS dataset: [earthflow/GAMUS](https://huggingface.co/datasets/earthflow/GAMUS
 (CC-BY-4.0). PyTorch dataloader reference:
 [EarthNets/RSI-MMSegmentation](https://github.com/EarthNets/RSI-MMSegmentation).
 
-## Design notes
+## Implementation notes
 
-The milestone checklist, exact commands, and the specific correctness
-traps this implementation guards against (GAMUS's HDF5 format, its
-negative-height nodata encoding, memory-safe metric computation, etc.)
-are documented inline in the source (`src/dataset.py`, `src/losses.py`,
-`src/metrics.py`, `src/train.py` docstrings) and in `docs/limitations.md`.
+The specific correctness traps this implementation guards against
+(GAMUS's HDF5 format, its negative-height nodata encoding, memory-safe
+metric computation, etc.) are documented inline in the source
+(`src/dataset.py`, `src/losses.py`, `src/metrics.py`, `src/train.py`
+docstrings) and in `docs/limitations.md`.
