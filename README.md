@@ -16,8 +16,8 @@ in metres).
 ## Architecture
 
 ResNet34 encoder (ImageNet-pretrained, fully fine-tuned) + a
-skip-connected upsampling decoder — see `src/model.py` and
-`PROJECT_PLAN.md` Section 4 for the full architecture rationale.
+skip-connected upsampling decoder — see `src/model.py` for the full
+architecture and inline rationale.
 
 ## Data
 
@@ -102,10 +102,10 @@ GAMUS dataset: [earthflow/GAMUS](https://huggingface.co/datasets/earthflow/GAMUS
 (CC-BY-4.0). PyTorch dataloader reference:
 [EarthNets/RSI-MMSegmentation](https://github.com/EarthNets/RSI-MMSegmentation).
 
-## Project plan
+## Design notes
 
-See `PROJECT_PLAN.md` for the original design document. The milestone
-checklist, exact commands, and the specific correctness traps this
-implementation guards against are documented inline in the source
-(`src/dataset.py`, `src/losses.py`, `src/metrics.py`, `src/train.py`
-docstrings) and in `docs/limitations.md`.
+The milestone checklist, exact commands, and the specific correctness
+traps this implementation guards against (GAMUS's HDF5 format, its
+negative-height nodata encoding, memory-safe metric computation, etc.)
+are documented inline in the source (`src/dataset.py`, `src/losses.py`,
+`src/metrics.py`, `src/train.py` docstrings) and in `docs/limitations.md`.
