@@ -1,0 +1,17 @@
+# Local dev (CPU): install torch/torchvision from the CPU wheel index first --
+#   pip install --index-url https://download.pytorch.org/whl/cpu torch==2.6.0 torchvision==0.21.0
+#   pip install -r requirements.txt
+# On Colab: do NOT pin torch/torchvision -- use the preinstalled CUDA build.
+# See PROJECT_PLAN.md Section 6 and the execution plan for the full rationale.
+#
+# NOTE: PROJECT_PLAN.md's original list (rasterio, scikit-learn) has been
+# corrected here -- GAMUS data is HDF5, not GeoTIFF, so rasterio is unused;
+# scikit-learn was never used by any module in this project.
+numpy==2.2.6
+scipy==1.15.3
+h5py==3.16.0
+huggingface-hub==1.8.0
+pyyaml==6.0.2
+tqdm==4.67.1
+matplotlib==3.10.0
+pillow==11.1.0

@@ -1,0 +1,49 @@
+# ResHeightNet default training configuration.
+# Matches DepthWizard's stage_a1 recipe exactly (batch/lr/schedule/seed)
+# so the comparison in docs/comparison_table.md is not confounded by
+# training-hyperparameter differences. See docs/limitations.md for the
+# one deliberate deviation (M6 overfit-gate learning rate).
+
+seed: 42
+
+data:
+  train_split: data/splits/stage_a1_train.txt
+  val_split: data/splits/stage_a1_val.txt
+  # data_root is resolved at runtime via src.utils.resolve_data_root()
+  # (env var GAMUS_ROOT, then /content/gamus on Colab, then the local
+  # default below) -- not set here, so the same config works on both
+  # machines without editing.
+  patch_size: 512
+
+model:
+  encoder: resnet34
+  pretrained: true
+  freeze_stem: false  # fine-tune the whole network, matching DepthWizard
+
+train:
+  epochs: 15
+  batch_size: 8
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  optimizer: AdamW
+  scheduler: CosineAnnealingLR
+  amp: true  # fp16 on CUDA (T4 has no bf16 hardware); ignored on CPU
+  num_workers_colab: 2
+  num_workers_local: 0
+
+overfit_gate:
+  # M6 sanity gate. lr is intentionally higher than train.lr -- see
+  # docs/limitations.md "M6 overfit-gate learning rate differs from
+  # production training" for why.
+  n_tiles: 10
+  steps: 300
+  lr: 3.0e-3
+  pass_final_m: 0.30
+  pass_final_over_l0: 0.25
+
+eval:
+  # Parity protocol with DepthWizard's M1 path (src/training/metrics.py
+  # in the DepthWizard repo): 512 center crop, pooled per-pixel across
+  # all val tiles, predictions NOT clamped to >= 0.
+  patch_size: 512
+  clamp_predictions: false

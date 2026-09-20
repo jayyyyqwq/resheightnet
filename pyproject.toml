@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+markers = [
+    "realdata: requires the local 20-tile GAMUS subset fetched via scripts/fetch_gamus.py",
+]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["src/__init__.py"]

@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# GAMUS raster data — fetched via scripts/fetch_gamus.py, never committed
+data/gamus/
+
+# Checkpoints and generated outputs
+results/checkpoints/*.pt
+results/sample_outputs/*.png
+!results/checkpoints/.gitkeep
+!results/sample_outputs/.gitkeep
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+*.egg-info/
