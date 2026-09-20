@@ -19,7 +19,6 @@ config only, weights_only=True-safe).
 from __future__ import annotations
 
 import argparse
-import copy
 import os
 import time
 
@@ -28,7 +27,6 @@ from torch.utils.data import DataLoader
 
 from src.dataset import GamusHeightDataset
 from src.losses import masked_l1_loss
-from src.metrics import compute_height_metrics
 from src.model import ResHeightNet
 from src.utils import load_checkpoint, save_checkpoint, set_seed
 

@@ -12,9 +12,9 @@ from scratch. See PROJECT_PLAN.md Section 2/15 for the full rationale.
 from __future__ import annotations
 
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
-import torchvision.models as models
+from torch import nn
+from torchvision import models
 
 
 class DecoderBlock(nn.Module):
