@@ -15,6 +15,11 @@ results/checkpoints/*.pt
 results/sample_outputs/*.png
 !results/checkpoints/.gitkeep
 !results/sample_outputs/.gitkeep
+# Exception: the 3 demo images the README embeds (M9), committed
+# deliberately so the README renders on GitHub without extra setup.
+!results/sample_outputs/DC_38_52.png
+!results/sample_outputs/PHL_1717.png
+!results/sample_outputs/DC_49_54.png
 
 # OS/editor cruft
 .DS_Store

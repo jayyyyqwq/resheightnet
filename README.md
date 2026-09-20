@@ -31,10 +31,26 @@ GAMUS ships HDF5 RGB/AGL-height/semantic-class triplets, 1024x1024,
 
 ## Results
 
-See `docs/comparison_table.md` for the full comparison against
-DepthWizard's reported M1 baseline, including source citations and a
-constant-predictor row for calibration. Filled in only after M5/M8 have
-actually been run — never estimated.
+| Model | MAE (m) | RMSE (m) | Pearson r |
+|---|---|---|---|
+| **ResHeightNet (ours)** | **2.17** | **4.33** | **0.844** |
+| DepthWizard M1 *(reported)* | 3.31 | 6.28 | 0.68 |
+
+Same protocol for both (512x512 center crop, pooled per-pixel across
+all 200 `stage_a1_val` tiles, predictions not clamped). ResHeightNet
+beats the reported DepthWizard M1 baseline on all three metrics here —
+notable since DepthWizard's M1 also has a frozen Depth Anything V2
+depth prior as an extra input, which this model doesn't have access to.
+See `docs/comparison_table.md` for the full table (including a
+constant-predictor calibration row, per-class/per-height-bucket error
+breakdown, and full source citations) and `docs/limitations.md` for
+what this comparison does and does not control for.
+
+Sample predictions:
+
+![DC_38_52](results/sample_outputs/DC_38_52.png)
+![PHL_1717](results/sample_outputs/PHL_1717.png)
+![DC_49_54](results/sample_outputs/DC_49_54.png)
 
 ## Setup
 
